@@ -1,8 +1,12 @@
 import { useContext } from "react";
-import UserContext from "../UserContext";
+import UserContext from "../UserContext"; // Import context
 
 function UserProfile() {
-  const userData = useContext(UserContext);
+  const userData = useContext(UserContext); // Get user data from context
+
+  if (!userData) {
+    return <p>Loading user data...</p>; // Handle missing context
+  }
 
   return (
     <div>
@@ -14,5 +18,7 @@ function UserProfile() {
 }
 
 export default UserProfile;
+
+
 
   
