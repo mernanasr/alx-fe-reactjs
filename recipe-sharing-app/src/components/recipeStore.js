@@ -1,10 +1,13 @@
 import { create } from "zustand";
 
-const useStore = create((set) => ({
+const useRecipeStore = create((set) => ({
   favorites: [],
   recommendations: [],
   recipes: [],
   filteredRecipes: [],
+
+  addRecipe: (recipe) =>
+    set((state) => ({ recipes: [...state.recipes, recipe] })),
 
   addFavorite: (recipe) =>
     set((state) => ({ favorites: [...state.favorites, recipe] })),
@@ -17,9 +20,6 @@ const useStore = create((set) => ({
   setRecommendations: (newRecommendations) =>
     set({ recommendations: newRecommendations }),
 
-  setRecipes: (newRecipes) =>
-    set({ recipes: newRecipes, filteredRecipes: newRecipes }),
-
   filterRecipes: (searchTerm) =>
     set((state) => ({
       filteredRecipes: state.recipes.filter((recipe) =>
@@ -28,4 +28,4 @@ const useStore = create((set) => ({
     })),
 }));
 
-export default useStore;
+export default useRecipeStore;
