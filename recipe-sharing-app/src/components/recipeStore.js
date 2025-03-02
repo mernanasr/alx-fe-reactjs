@@ -5,6 +5,7 @@ const useRecipeStore = create((set) => ({
   recommendations: [],
   recipes: [],
   filteredRecipes: [],
+  searchTerm: "",
 
   setRecipes: (newRecipes) => set({ recipes: newRecipes }),
 
@@ -34,10 +35,12 @@ const useRecipeStore = create((set) => ({
   setRecommendations: (newRecommendations) =>
     set({ recommendations: newRecommendations }),
 
-  filterRecipes: (searchTerm) =>
+  setSearchTerm: (term) => set({ searchTerm: term }),
+
+  filterRecipes: () =>
     set((state) => ({
       filteredRecipes: state.recipes.filter((recipe) =>
-        recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+        recipe.name.toLowerCase().includes(state.searchTerm.toLowerCase())
       ),
     })),
 }));
