@@ -1,24 +1,28 @@
-import useStore from './recipeStore';
+import React from "react";
+import useRecipeStore from "./recipeStore";
 
-function FavoritesList() {
-  const favorites = useStore((state) => state.favorites); // Ensure this is correct
-
-  if (!favorites) return <p>Loading favorites...</p>; // Handle undefined case
+const FavoritesList = () => {
+  const { favorites, removeFavorite } = useRecipeStore((state) => ({
+    favorites: state.favorites,
+    removeFavorite: state.removeFavorite,
+  }));
 
   return (
     <div>
-      <h2>Favorites</h2>
+      <h2>My Favorites</h2>
       {favorites.length === 0 ? (
-        <p>No favorites yet.</p>
+        <p>No favorite recipes yet.</p>
       ) : (
-        <ul>
-          {favorites.map((recipe) => (
-            <li key={recipe.id}>{recipe.name}</li>
-          ))}
-        </ul>
+        favorites.map((recipe) => (
+          <div key={recipe.id}>
+            <h3>{recipe.name}</h3>
+            <p>{recipe.description}</p>
+            <button onClick={() => removeFavorite(recipe.id)}>Remove</button>
+          </div>
+        ))
       )}
     </div>
   );
-}
+};
 
 export default FavoritesList;
