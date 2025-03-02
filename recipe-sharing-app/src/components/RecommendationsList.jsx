@@ -1,23 +1,23 @@
 import React from "react";
-import useStore from "./recipeStore"; 
+import useRecipeStore from "./recipeStore";
 
-function RecommendationsList() {
-  const recommendations = useStore((state) => state.recommendations || []);
+const RecommendationsList = () => {
+  const { recommendations } = useRecipeStore(); 
+
+  if (!recommendations || recommendations.length === 0) {
+    return <p>No recommendations available.</p>;
+  }
 
   return (
     <div>
       <h2>Recommended Recipes</h2>
-      {recommendations.length > 0 ? (
-        <ul>
-          {recommendations.map((recipe) => (
-            <li key={recipe.id}>{recipe.name}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No recommendations available.</p>
-      )}
+      <ul>
+        {recommendations.map((recipe) => (
+          <li key={recipe.id}>{recipe.name}</li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
 export default RecommendationsList;
