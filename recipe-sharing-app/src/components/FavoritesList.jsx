@@ -1,26 +1,24 @@
-import { useRecipeStore } from '../recipeStore';
+import useStore from './recipeStore';
 
-const FavoritesList = () => {
-  const { recipes, favorites } = useRecipeStore(state => ({
-    recipes: state.recipes,
-    favorites: state.favorites.map(id => state.recipes.find(recipe => recipe.id === id)),
-  }));
+function FavoritesList() {
+  const favorites = useStore((state) => state.favorites); // Ensure this is correct
+
+  if (!favorites) return <p>Loading favorites...</p>; // Handle undefined case
 
   return (
     <div>
-      <h2>My Favorites</h2>
-      {favorites.length > 0 ? (
-        favorites.map(recipe => (
-          <div key={recipe.id}>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.description}</p>
-          </div>
-        ))
+      <h2>Favorites</h2>
+      {favorites.length === 0 ? (
+        <p>No favorites yet.</p>
       ) : (
-        <p>No favorite recipes yet.</p>
+        <ul>
+          {favorites.map((recipe) => (
+            <li key={recipe.id}>{recipe.name}</li>
+          ))}
+        </ul>
       )}
     </div>
   );
-};
+}
 
 export default FavoritesList;
