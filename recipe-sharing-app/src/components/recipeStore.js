@@ -6,6 +6,8 @@ const useRecipeStore = create((set) => ({
   recipes: [],
   filteredRecipes: [],
 
+  setRecipes: (newRecipes) => set({ recipes: newRecipes }),
+
   addRecipe: (recipe) =>
     set((state) => ({ recipes: [...state.recipes, recipe] })),
 
