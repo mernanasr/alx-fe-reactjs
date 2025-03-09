@@ -1,30 +1,36 @@
 import { useState } from "react";
-import FormikForm from "./components/FormikForm.jsx";
+import RegistrationForm from "./components/RegistrationForm";
+import FormikForm from "./components/FormikForm";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [showForms, setShowForms] = useState(true);
 
   return (
-    <>
-      <h1>React Form Handling with Formik</h1>
-      
-      {/* Counter Section (Optional, Can Be Removed If Not Needed) */}
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
+    <div className="app-container">
+      <h1>React Form Handling</h1>
 
-      {/* Formik-based Form Component */}
-      <h2>User Registration (Formik)</h2>
-      <FormikForm />
-    </>
+      <button onClick={() => setShowForms(!showForms)}>
+        {showForms ? "Hide Forms" : "Show Forms"}
+      </button>
+
+      {showForms && (
+        <>
+          <section>
+            <h2>Controlled Component Form</h2>
+            <RegistrationForm />
+          </section>
+
+          <section>
+            <h2>Formik-based Form</h2>
+            <FormikForm />
+          </section>
+        </>
+      )}
+    </div>
   );
 }
 
 export default App;
+
 
