@@ -9,12 +9,12 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  const { data, error, isError, isLoading } = useQuery({
+  const { data, error, isError, isLoading, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
     cacheTime: 1000 * 60 * 5, 
     staleTime: 1000 * 60, 
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: false, 
     keepPreviousData: true, 
   });
 
@@ -27,11 +27,14 @@ const PostsComponent = () => {
   }
 
   return (
-    <ul>
-      {data.map((post) => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
+    <div>
+      <button onClick={() => refetch()}>Refetch Data</button>
+      <ul>
+        {data.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
