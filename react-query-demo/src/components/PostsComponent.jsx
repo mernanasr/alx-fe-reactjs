@@ -12,6 +12,10 @@ const PostsComponent = () => {
   const { data, error, isError, isLoading } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
+    cacheTime: 1000 * 60 * 5, 
+    staleTime: 1000 * 60, 
+    refetchOnWindowFocus: false,
+    keepPreviousData: true, 
   });
 
   if (isLoading) {
@@ -32,4 +36,3 @@ const PostsComponent = () => {
 };
 
 export default PostsComponent;
-
