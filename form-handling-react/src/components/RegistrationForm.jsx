@@ -36,39 +36,36 @@ const RegistrationForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label>Username:</label>
         <input
-          id="username"
           type="text"
           name="username"
-          value={formData.username}
+          value={formData.username}  // ✅ Explicitly setting value
           onChange={handleChange}
         />
-        {errors.username && <span style={{ color: "red" }}>{errors.username}</span>}
+        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
       </div>
 
       <div>
-        <label htmlFor="email">Email:</label>
+        <label>Email:</label>
         <input
-          id="email"
           type="email"
           name="email"
-          value={formData.email}
+          value={formData.email}  // ✅ Explicitly setting value
           onChange={handleChange}
         />
-        {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
+        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
       </div>
 
       <div>
-        <label htmlFor="password">Password:</label>
+        <label>Password:</label>
         <input
-          id="password"
           type="password"
           name="password"
-          value={formData.password}
+          value={formData.password}  // ✅ Explicitly setting value
           onChange={handleChange}
         />
-        {errors.password && <span style={{ color: "red" }}>{errors.password}</span>}
+        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
       </div>
 
       <button type="submit">Register</button>
@@ -77,4 +74,3 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
