@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,8 +29,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div className="flex items-center justify-center min-h-screen bg-gray-400">
+      <UserProfile />
+    </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
