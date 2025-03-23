@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import AddRecipeForm from "./AddRecipeForm";
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -11,10 +12,17 @@ const HomePage = () => {
       .catch((error) => console.error("Error loading recipes:", error));
   }, []);
 
+  const handleAddRecipe = (newRecipe) => {
+    setRecipes([...recipes, newRecipe]);
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-center mb-6">Recipe Sharing Platform</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <AddRecipeForm onAddRecipe={handleAddRecipe} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         {recipes.map((recipe) => (
           <div key={recipe.id} className="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
             <img src={recipe.image} alt={recipe.title} className="w-full h-40 object-cover rounded" />
