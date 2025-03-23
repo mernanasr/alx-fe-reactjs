@@ -1,6 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-gray-100 text-gray-800;
+  font-family: 'Inter', sans-serif;
+}
+
+form {
+  @apply bg-white p-6 shadow-lg rounded-lg;
+}
+
+input, textarea {
+  @apply w-full p-2 border border-gray-300 rounded focus:ring focus:ring-blue-300;
+}
+
+label {
+  @apply block text-gray-700 font-medium mb-1;
+}
+
+button {
+  @apply w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-300;
+}
+
+
+.error-text {
+  @apply text-red-500 text-sm mt-1;
+}
+
+
+.container {
+  @apply max-w-3xl mx-auto px-4;
+}
+
+h1, h2 {
+  @apply font-bold text-center mb-4;
+}
+
+h1 {
+  @apply text-3xl text-blue-600;
+}
+
+h2 {
+  @apply text-2xl text-gray-800;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
