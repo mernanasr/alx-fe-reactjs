@@ -49,7 +49,7 @@ const Search = () => {
       {loading && <p>Loading...</p>}
 
       {/* Display error message if the user cannot be found */}
-      {error && <p>Looks like we can't find the user</p>}  {/* Error message here */}
+      {error && <p>Looks like we cant find the user</p>}  {/* Error message here */}
 
       {/* Display user data if found */}
       {user && (
