@@ -1,25 +1,30 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";  
+import { fetchUserData } from "../services/githubService"; // Assuming you're using a service to fetch data
 
 const Search = () => {
-  const [username, setUsername] = useState("");  
-  const [user, setUser] = useState(null);         
-  const [loading, setLoading] = useState(false);  
-  const [error, setError] = useState(false);     
+  const [username, setUsername] = useState("");  // State for storing the username input
+  const [user, setUser] = useState(null);         // State for storing user data
+  const [loading, setLoading] = useState(false);  // State for handling loading status
+  const [error, setError] = useState(false);     // State for handling errors
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (username.trim()) {
-      setLoading(true);      
-      setError(false);       
+    e.preventDefault();   // Prevent form submission reload
+    if (username.trim()) {  // If there's input
+      setLoading(true);    // Set loading state to true
+      setError(false);     // Reset error state
       try {
-        const data = await fetchUserData(username);  
-        setUser(data);        
+        const data = await fetchUserData(username);  // Fetch user data from GitHub API
+        if (data) {
+          setUser(data);      // Set user data if found
+        } else {
+          setError(true);     // If no user found, set error state
+          setUser(null);       // Clear user data
+        }
       } catch (err) {
-        setError(true);       
-        setUser(null);         
+        setError(true);     // Set error state in case of an API error
+        setUser(null);       // Clear any user data
       } finally {
-        setLoading(false);
+        setLoading(false);  // Set loading state to false once done
       }
     }
   };
@@ -32,7 +37,7 @@ const Search = () => {
           type="text"
           placeholder="Enter GitHub username..."
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}  // Update username on input change
           className="border p-2 rounded"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
@@ -40,13 +45,13 @@ const Search = () => {
         </button>
       </form>
 
-      
+      {/* Display loading message */}
       {loading && <p>Loading...</p>}
 
-      
-      {error && <p>Looks like we can't find the user</p>}
+      {/* Display error message */}
+      {error && <p>Looks like we can't find the user</p>}  {/* Error message here */}
 
-      
+      {/* Display user data if found */}
       {user && (
         <div className="mt-4 p-4 border rounded">
           <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
@@ -61,4 +66,5 @@ const Search = () => {
 };
 
 export default Search;
+
 
