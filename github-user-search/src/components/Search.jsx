@@ -48,7 +48,7 @@ const Search = () => {
       {/* Display loading message */}
       {loading && <p>Loading...</p>}
 
-      {/* Display error message */}
+      {/* Display error message if the user cannot be found */}
       {error && <p>Looks like we can't find the user</p>}  {/* Error message here */}
 
       {/* Display user data if found */}
@@ -66,5 +66,6 @@ const Search = () => {
 };
 
 export default Search;
+
 
 
